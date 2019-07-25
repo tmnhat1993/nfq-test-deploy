@@ -1,6 +1,6 @@
 // Modules
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Stylesheet
 import './App.scss';
@@ -69,18 +69,19 @@ class App extends React.Component{
     render(){
         return (
             <div className="App">
-
-                {/* Page Routing */}
-                <Route path={'/search'}
-                       render={(props) => <SearchPage {...props}
-                                                      addItem={this.addItemIntoCollection}/>} />
-                <Route path={'/'} exact
-                       render={(props) => <CollectionPage {...props}
-                                                          collection={this.state.list}
-                                                          removeItem={this.removeItem}
-                                                          favItem={this.favItem}
-                       />}
-                />
+                <Router>
+                    {/* Page Routing */}
+                    <Route path={'/search'}
+                           render={(props) => <SearchPage {...props}
+                                                          addItem={this.addItemIntoCollection}/>} />
+                    <Route path={'/'} exact
+                           render={(props) => <CollectionPage {...props}
+                                                              collection={this.state.list}
+                                                              removeItem={this.removeItem}
+                                                              favItem={this.favItem}
+                           />}
+                    />
+                </Router>
 
             </div>);
     }
